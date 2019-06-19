@@ -39,9 +39,15 @@ storiesOf('Icons', module)
     )
   })
 storiesOf('Option', module).add('Option', () => (
-  <Option icon={'musicIcon'} checkedOptions={() => {}}>
-    Play Music
-  </Option>
+  <React.Fragment>
+    <Option icon={'musicIcon'} onClickOption={() => {}} isActive>
+      Play Music
+    </Option>
+
+    <Option icon={'musicIcon'} onClickOption={() => {}}>
+      Play Music
+    </Option>
+  </React.Fragment>
 ))
 storiesOf('MultiOptions', module).add('MultiOptionsComponent', () => (
   <MultiOptionsComponent />

@@ -8,25 +8,15 @@ import {
 } from './elements.js'
 
 export default class Option extends React.Component {
-  state = {
-    isActive: false
-  }
-  toggleActive = e => {
-    this.setState({
-      isActive: !this.state.isActive
-    })
-  }
   render() {
-    const { icon, children, checkedOptions } = this.props
-    const { isActive } = this.state
+    const { icon, children, onClickOption, isActive } = this.props
     return (
       <React.Fragment>
         <Input
           type="checkbox"
           id={icon}
-          onClick={e => {
-            checkedOptions(e)
-            this.toggleActive(e)
+          onClick={({ target }) => {
+            onClickOption(target.id, target.checked)
           }}
         />
         {isActive ? (

@@ -5,34 +5,39 @@ export default class MultiOptionsComponent extends React.Component {
   state = {
     selectedOptions: []
   }
-  checkedOptions = e => {
-    if (e.target.checked) {
+  onClickOption = (id, checked) => {
+    if (checked) {
       this.setState({
-        selectedOptions: [...this.state.selectedOptions, e.target.id]
+        selectedOptions: [...this.state.selectedOptions, id]
       })
     } else {
       this.setState({
         selectedOptions: this.state.selectedOptions.filter(
-          value => value !== e.target.id
+          value => value !== id
         )
       })
     }
+  }
+  isActive(option) {
+    const { selectedOptions } = this.state;
+
+    return selectedOptions.includes(option)
   }
   render() {
     return (
       <Container>
         <Regular>Select one or more options:</Regular>
         <OptionsContainer>
-          <Option icon={'musicIcon'} checkedOptions={this.checkedOptions}>
+          <Option icon={'musicIcon'} isActive={this.isActive('musicIcon')} onClickOption={this.onClickOption}>
             Play Music
           </Option>
-          <Option icon={'lightIcon'} checkedOptions={this.checkedOptions}>
+          <Option icon={'lightIcon'} isActive={this.isActive('lightIcon')} onClickOption={this.onClickOption}>
             Do a Performance
           </Option>
-          <Option icon={'eyeIcon'} checkedOptions={this.checkedOptions}>
+          <Option icon={'eyeIcon'}  isActive={this.isActive('eyeIcon')} onClickOption={this.onClickOption}>
             Paint/Design Something
           </Option>
-          <Option icon={'heartIcon'} checkedOptions={this.checkedOptions}>
+          <Option icon={'heartIcon'}  isActive={this.isActive('heartIcon')} onClickOption={this.onClickOption}>
             Do Something Else
           </Option>
         </OptionsContainer>
